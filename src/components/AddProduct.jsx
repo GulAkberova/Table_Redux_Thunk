@@ -33,12 +33,12 @@ function AddProduct() {
   }
   return (
     <>
-  <FormControl  px='100px' py={'30px'}>
+  <FormControl  px='100px' py={'30px'}  backgroundColor={'#927A55'} color='white' height={'100vh'}>
   <FormLabel>Name</FormLabel>
-  <Input type='text' focusBorderColor='lime' placeholder='Name' name='name' onChange={(e)=>handleAdd(e)}/>
+  <Input type='text' focusBorderColor='lime' name='name' onChange={(e)=>handleAdd(e)}/>
   <FormLabel>UnitPrice</FormLabel>
-  <Input type='number' focusBorderColor='lime' placeholder='UnitPrice' name='unitPrice' onChange={(e)=>handleAdd(e)}/>
-  <Button my={'20px'} px='30px' py={'10px'} onClick={handleAddValue}>ADD</Button>
+  <Input type='number' focusBorderColor='lime' name='unitPrice' onChange={(e)=>handleAdd(e)}/>
+  <Button my={'20px'} px='30px' py={'10px'}  backgroundColor={'transparent'} border='1px solid white' color={'white'} transition='0.5s' _hover={{color:'black', backgroundColor:'white'}} onClick={handleAddValue}>ADD</Button>
 
 
 </FormControl>

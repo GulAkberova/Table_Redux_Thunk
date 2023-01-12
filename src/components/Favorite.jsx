@@ -24,16 +24,15 @@ function Favorite() {
 
   return (
     <>
-      <TableContainer px='100px' py={'30px'}>
+      <TableContainer px='100px' py={'30px'} backgroundColor={'#927A55'} color='white' >
   <Table variant='simple'>
     <Thead>
       <Tr>
         <Th>Id</Th>
         <Th>Name</Th>
         <Th>UnitPrice</Th>
-        <Th isNumeric>Delete</Th>
-        <Th isNumeric>Update</Th>
-        <Th isNumeric>Favorite</Th>
+        <Th isNumeric>DElete</Th>
+        <Th isNumeric>No Favorite</Th>
       </Tr>
     </Thead>
     <Tbody>
@@ -43,9 +42,8 @@ function Favorite() {
               <Td>{i.id}</Td>
               <Td>{i.name}</Td>
               <Td>{i.unitPrice}</Td>
-              <Td isNumeric><Button onClick={()=>handleClick(i)}>Delete</Button></Td>
-              <Td isNumeric><Button>Update</Button></Td>
-              {/* <Td isNumeric><Button onClick={()=>handleFavorite(i)}>Favorite</Button></Td> */}
+              <Td isNumeric><Button onClick={()=>handleClick(i)}  backgroundColor={'transparent'} border='1px solid white' color={'white'} transition='0.5s' _hover={{color:'black', backgroundColor:'white'}}>Delete</Button></Td>
+              <Td isNumeric><Button  backgroundColor={'transparent'} border='1px solid white' color={'white'} transition='0.5s' _hover={{color:'black', backgroundColor:'white'}}>Favorite</Button></Td>
             </Tr>
           ))}
     
