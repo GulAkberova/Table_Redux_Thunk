@@ -28,8 +28,8 @@ function Product() {
   const handleClick=(index)=>{
     dispatch({type: "DELETE_PRODUCT", payload:index})
     toast({
-      title: 'Account created.',
-      description: "We've created your account for you.",
+      title: 'Product Delete',
+      description: "",
       status: 'success',
       duration: 1000,
       isClosable: true,
@@ -37,14 +37,43 @@ function Product() {
 
   }
   const handleFavorite=(index)=>{
-    let checkFavorite=favorite.find(q=>q !=index)
+    
+    
+    let checkFavorite=favorite.find(q=>q.id ==index.id)
     if(!checkFavorite){
       dispatch(favoriteAction.favoriteAdd(index))
+      toast({
+        title: 'Add Favorite',
+        description: "",
+        status: 'success',
+        duration: 1000,
+        isClosable: true,
+      })
+
+    }else{
+      dispatch(favoriteAction.favoriteDelete(index))
+      toast({
+        title: 'Delete Favorite',
+        description: "",
+        status: 'error',
+        duration: 1000,
+        isClosable: true,
+      })
 
     }
 
 
   }
+  const getBtn = (i) => {
+
+    let checkFavorite=favorite.find(q=>q.id ==i.id)
+
+    if (!checkFavorite)
+        return <Button onClick={()=>handleFavorite(i)} backgroundColor={'transparent'} border='1px solid white' color={'white'} transition='0.5s' _hover={{color:'black', backgroundColor:'white'}}>Add Favorite</Button>
+    else
+        return <Button onClick={()=>handleFavorite(i)} backgroundColor={'transparent'} border='1px solid white' color={'white'} transition='0.5s' _hover={{color:'black', backgroundColor:'white'}}> Remove Favorite</Button>
+
+}
  
 
   return (
@@ -68,7 +97,7 @@ function Product() {
               <Td>{i.name}</Td>
               <Td>{i.unitPrice}</Td>
               <Td isNumeric><Button onClick={()=>handleClick(i)} backgroundColor={'transparent'} border='1px solid white' color={'white'} transition='0.5s' _hover={{color:'black', backgroundColor:'white'}}>Delete</Button></Td>
-              <Td isNumeric><Button onClick={()=>handleFavorite(i)} backgroundColor={'transparent'} border='1px solid white' color={'white'} transition='0.5s' _hover={{color:'black', backgroundColor:'white'}}>Favorite</Button></Td>
+              <Td isNumeric>{getBtn(i)}</Td>
             </Tr>
           ))}
     

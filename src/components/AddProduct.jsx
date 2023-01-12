@@ -3,11 +3,14 @@ import { Input,Stack,  FormControl,
   FormLabel,
   FormErrorMessage,
   FormHelperText,
-  Button, } from '@chakra-ui/react'
+  Button,
+  useToast, } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
 import { productAction } from '../redux/actions/product.action'
 function AddProduct() {
   const dispatch=useDispatch()
+  const toast = useToast()
+
    const [newValue, setNewValue]=useState({
     name:"",
     unitPrice:''
@@ -29,6 +32,13 @@ function AddProduct() {
 
     dispatch(productAction.getAdd(newValue))
     console.log(newValue)
+    toast({
+      title: 'Add Product',
+      description: "",
+      status: 'success',
+      duration: 1000,
+      isClosable: true,
+    })
 
   }
   return (

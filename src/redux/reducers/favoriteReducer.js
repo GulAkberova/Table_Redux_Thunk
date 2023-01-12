@@ -7,7 +7,11 @@ export const favoriteReducer=(state,action)=>{
             return [...state,action.payload]
             
             case 'DELETE_FAVORITE':
-                return state=state.filter(index=>index != action.payload)
+              let filteredFav=state.filter(index=>index != action.payload)
+              return [...filteredFav]
+
+            case 'EMPTY':
+                return []
     
         default:
           return state

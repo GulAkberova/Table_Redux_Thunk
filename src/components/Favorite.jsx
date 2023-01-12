@@ -10,7 +10,9 @@ import {
     Td,
     TableCaption,
     TableContainer,
-    Button
+    Button,
+    Box,
+    Text
   
   } from '@chakra-ui/react'
 
@@ -21,9 +23,13 @@ function Favorite() {
     dispatch({type: "DELETE_FAVORITE", payload:index})
 
   }
+  const handleAllDelete=()=>{
+    dispatch({type:'EMPTY'})
+  }
 
   return (
     <>
+ 
       <TableContainer px='100px' py={'30px'} backgroundColor={'#927A55'} color='white' >
   <Table variant='simple'>
     <Thead>
@@ -32,20 +38,21 @@ function Favorite() {
         <Th>Name</Th>
         <Th>UnitPrice</Th>
         <Th isNumeric>DElete</Th>
-        <Th isNumeric>No Favorite</Th>
+        <Th isNumeric><Button  backgroundColor={'transparent'} border='1px solid white' color={'white'} transition='0.5s' _hover={{color:'black', backgroundColor:'white'}} onClick={()=>handleAllDelete()}>ALL DELETE</Button></Th>
       </Tr>
     </Thead>
     <Tbody>
-    {favorite &&
+    {favorite.length ?
           favorite.map((i, key) => (
             <Tr key={key}>
               <Td>{i.id}</Td>
               <Td>{i.name}</Td>
               <Td>{i.unitPrice}</Td>
               <Td isNumeric><Button onClick={()=>handleClick(i)}  backgroundColor={'transparent'} border='1px solid white' color={'white'} transition='0.5s' _hover={{color:'black', backgroundColor:'white'}}>Delete</Button></Td>
-              <Td isNumeric><Button  backgroundColor={'transparent'} border='1px solid white' color={'white'} transition='0.5s' _hover={{color:'black', backgroundColor:'white'}}>Favorite</Button></Td>
+           
             </Tr>
-          ))}
+          )) : <Box height={'100vh'} py='30px'>   <Text fontSize='4xl'>Data not found...</Text></Box>
+        }
     
     </Tbody>
   
