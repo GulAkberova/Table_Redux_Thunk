@@ -1,17 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import thunk from 'redux-thunk';
+import { applyMiddleware, createStore } from 'redux';
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from 'react-redux';
+import reducers from './redux/reducers';
+import logger from 'redux-logger';
+import { ChakraProvider } from '@chakra-ui/react'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const counterStore= createStore(reducers,applyMiddleware(thunk,logger))
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BrowserRouter>
+   <Provider store={counterStore}>
+   <ChakraProvider> 
+       <App/>
+  </ChakraProvider>
+   </Provider>
+
+  </BrowserRouter>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
